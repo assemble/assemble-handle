@@ -7,6 +7,8 @@
 
 'use strict';
 
+var through = require('through2');
+
 /**
  * Plugin for handling middleware
  *
@@ -14,16 +16,17 @@
  * @param {String} `stage` the middleware stage to run
  */
 
-function handle(app, stage) {
-  return utils.through.obj(function(file, enc, next) {
+module.exports = function handle(app, stage) {
+  return through.obj(function(file, enc, next) {
     if (typeof app.handle !== 'function') {
       return next(null, file);
     }
+
     if (typeof file.options === 'undefined') {
       return next(null, file);
     }
+
     if (file.isNull()) return next();
     app.handle(stage, file, next);
   });
-}
-
+};
