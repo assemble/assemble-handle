@@ -1,6 +1,6 @@
 {
   "name": "assemble-handle",
-  "description": "Pipeline plugin for handling middleware stages in a vinyl pipeline",
+  "description": "Assemble pipeline plugin for handling middleware stages.",
   "version": "0.1.0",
   "homepage": "https://github.com/jonschlinkert/assemble-handle",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",

@@ -1,6 +1,6 @@
 # assemble-handle [![NPM version](https://img.shields.io/npm/v/assemble-handle.svg)](https://www.npmjs.com/package/assemble-handle) [![Build Status](https://img.shields.io/travis/jonschlinkert/assemble-handle.svg)](https://travis-ci.org/jonschlinkert/assemble-handle)
 
-> Pipeline plugin for handling middleware stages in a vinyl pipeline
+> Assemble pipeline plugin for handling middleware stages.
 
 - [Usage](#usage)
 - [Related projects](#related-projects)
