@@ -1,0 +1,44 @@
+{
+  "name": "assemble-handle",
+  "description": "Pipeline plugin for handling middleware stages in a vinyl pipeline",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jonschlinkert/assemble-handle",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/assemble-handle",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/assemble-handle/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "gulp-format-md": "^0.1.5",
+    "mocha": "*"
+  },
+  "keywords": [
+    "assemble",
+    "handle"
+  ],
+  "verb": {
+    "related": {
+      "list": [
+        "assemble",
+        "assemble-core",
+        "assemble-fs",
+        "assemble-streams"
+      ]
+    },
+    "layout": "default",
+    "plugins": [
+      "gulp-format-md"
+    ]
+  }
+}
