@@ -23,7 +23,7 @@ module.exports = function handle(app, stage) {
     }
 
     if (typeof file.options === 'undefined') {
-      return next(null, file);
+      file.options = {};
     }
 
     if (file.isNull()) return next();

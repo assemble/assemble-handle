@@ -2,10 +2,9 @@
 
 require('mocha');
 var assert = require('assert');
+var assemble = require('assemble-core');
 var handle = require('./');
-var assemble = require('assemble');
 var app = assemble();
-
 
 describe('assemble-handle', function() {
   it('should export a function', function() {
