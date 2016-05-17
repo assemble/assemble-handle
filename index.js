@@ -19,14 +19,18 @@ var through = require('through2');
 module.exports = function handle(app, stage) {
   return through.obj(function(file, enc, next) {
     if (typeof app.handle !== 'function') {
-      return next(null, file);
+      next(null, file);
+      return;
     }
 
     if (typeof file.options === 'undefined') {
       file.options = {};
     }
 
-    if (file.isNull()) return next();
+    if (file.isNull()) {
+      next(null, file);
+      return;
+    }
     app.handle(stage, file, next);
   });
 };
