@@ -12,6 +12,8 @@ $ npm install assemble-handle --save
 
 ## Usage
 
+Examples using some built-in stages:
+
 ```js
 var assemble = require('assemble');
 var handle = require('assemble-handle');
@@ -74,10 +76,10 @@ app.task('default', function() {
 
 You might also be interested in these projects:
 
+* [assemble](https://www.npmjs.com/package/assemble): Assemble is a powerful, extendable and easy to use static site generator for node.js. Used… [more](https://www.npmjs.com/package/assemble) | [homepage](https://github.com/assemble/assemble)
 * [assemble-core](https://www.npmjs.com/package/assemble-core): The core assemble application with no presets or defaults. All configuration is left to the… [more](https://www.npmjs.com/package/assemble-core) | [homepage](https://github.com/assemble/assemble-core)
 * [assemble-fs](https://www.npmjs.com/package/assemble-fs): Assemble plugin to add methods to assemble for working with the file system, like src,… [more](https://www.npmjs.com/package/assemble-fs) | [homepage](https://github.com/assemble/assemble-fs)
 * [assemble-streams](https://www.npmjs.com/package/assemble-streams): Assemble pipeline plugin for pushing a view collection into a vinyl stream. | [homepage](https://github.com/assemble/assemble-streams)
-* [assemble](https://www.npmjs.com/package/assemble): Assemble is a powerful, extendable and easy to use static site generator for node.js. Used… [more](https://www.npmjs.com/package/assemble) | [homepage](https://github.com/assemble/assemble)
 
 ## Contributing
 
