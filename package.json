@@ -6,11 +6,13 @@
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "assemble/assemble-handle",
   "bugs": {
-    "url": "https://github.com/jonschlinkert/assemble-handle/issues"
+    "url": "https://github.com/assemble/assemble-handle/issues"
   },
   "license": "MIT",
   "files": [
-    "index.js"
+    "index.js",
+    "LICENSE",
+    "README.md"
   ],
   "main": "index.js",
   "engines": {
@@ -20,18 +22,22 @@
     "test": "mocha"
   },
   "dependencies": {
-    "through2": "^2.0.0"
+    "through2": "^2.0.1"
   },
   "devDependencies": {
-    "assemble-core": "^0.17.2",
+    "assemble-core": "^0.25.0",
+    "delete": "^0.3.2",
     "gulp-format-md": "^0.1.9",
-    "mocha": "^2.4.5"
+    "mocha": "^2.5.3",
+    "vinyl": "^1.1.1"
   },
   "keywords": [
     "assemble",
+    "assembleplugin",
     "handle",
     "handler",
     "middleware",
+    "plugin",
     "run",
     "stage",
     "use"
@@ -48,6 +54,10 @@
     "layout": "default",
     "plugins": [
       "gulp-format-md"
+    ],
+    "reflinks": [
+      "verb",
+      "verb-generate-readme"
     ]
   }
 }
