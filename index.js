@@ -34,3 +34,22 @@ module.exports = function handle(app, stage) {
     app.handle(stage, file, next);
   });
 };
+
+module.exports.once = function handleOnce(app, stage) {
+  return through.obj(function(file, enc, next) {
+    if (typeof app.handle !== 'function') {
+      next(null, file);
+      return;
+    }
+
+    if (typeof file.options === 'undefined') {
+      file.options = {};
+    }
+
+    if (file.isNull()) {
+      next(null, file);
+      return;
+    }
+    app.handleOnce(stage, file, next);
+  });
+};
