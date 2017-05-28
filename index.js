@@ -16,40 +16,37 @@ var through = require('through2');
  * @param {String} `stage` the middleware stage to run
  */
 
-module.exports = function handle(app, stage) {
-  return through.obj(function(file, enc, next) {
-    if (typeof app.handle !== 'function') {
-      next(null, file);
-      return;
-    }
+module.exports = create('handle');
+module.exports.once = create('handleOnce');
 
-    if (typeof file.options === 'undefined') {
-      file.options = {};
-    }
+/**
+ * Create handle functions
+ */
 
-    if (file.isNull()) {
-      next(null, file);
-      return;
-    }
-    app.handle(stage, file, next);
-  });
-};
+function create(prop) {
+  return function handleOnce(app, stage) {
+    return through.obj(function(file, enc, next) {
+      if (!file.path && !file.isNull && !file.contents) {
+        next();
+        return;
+      }
 
-module.exports.once = function handleOnce(app, stage) {
-  return through.obj(function(file, enc, next) {
-    if (typeof app.handle !== 'function') {
-      next(null, file);
-      return;
-    }
+      if (file.isNull()) {
+        next(null, file);
+        return;
+      }
 
-    if (typeof file.options === 'undefined') {
-      file.options = {};
-    }
+      if (typeof app.handle !== 'function') {
+        next(null, file);
+        return;
+      }
 
-    if (file.isNull()) {
-      next(null, file);
-      return;
-    }
-    app.handleOnce(stage, file, next);
-  });
-};
+      // file.options is used for tracking middleware
+      // stages during the render cycle
+      if (typeof file.options === 'undefined') {
+        file.options = {};
+      }
+      app[prop](stage, file, next);
+    });
+  };
+}
