@@ -26,7 +26,7 @@ app.task('handle-once', function(cb) {
     })
     .pipe(app.dest('test/actual'))
     .on('end', function() {
-      console.log(files[0].count);
+      console.log('should be 1:', files[0].count);
       //=> 1
       cb();
     });
@@ -45,7 +45,7 @@ app.task('handle', function(cb) {
     })
     .pipe(app.dest('test/actual'))
     .on('end', function() {
-      console.log(files[0].count);
+      console.log('should be 5:', files[0].count);
       //=> 5
       cb();
     });
