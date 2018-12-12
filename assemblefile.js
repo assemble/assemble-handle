@@ -1,9 +1,9 @@
 'use strict';
 
-var del = require('delete');
-var assemble = require('assemble-core');
-var handle = require('./');
-var app = assemble();
+const del = require('delete');
+const Assemble = require('assemble-core');
+const handle = require('./');
+const app = new Assemble();
 
 app.handler('onFoo');
 

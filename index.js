@@ -1,52 +1,57 @@
-/*!
- * assemble-handle <https://github.com/jonschlinkert/assemble-handle>
- *
- * Copyright (c) 2016, Jon Schlinkert.
- * Licensed under the MIT License.
- */
-
 'use strict';
 
-var through = require('through2');
+const through = require('through2');
 
-/**
- * Plugin for handling middleware
- *
- * @param {Object} `app` Instance of "app" (assemble, verb, etc) or a collection
- * @param {String} `stage` the middleware stage to run
- */
+module.exports = (app, method) => {
+  return through.obj(async(file, enc, next) => {
+    if (!file || !file.isNull || (!file.path && !file.contents)) {
+      next();
+      return;
+    }
 
-module.exports = create('handle');
-module.exports.once = create('handleOnce');
+    if (file.isNull()) {
+      next(null, file);
+      return;
+    }
 
-/**
- * Create handle functions
- */
-
-function create(prop) {
-  return function handleOnce(app, stage) {
-    return through.obj(function(file, enc, next) {
-      if (!file.path && !file.isNull && !file.contents) {
-        next();
+    if (app.handle) {
+      try {
+        await app.handle(method, file);
+      } catch (err) {
+        next(err);
         return;
       }
+    }
 
-      if (file.isNull()) {
-        next(null, file);
+    next(null, file);
+  });
+};
+
+module.exports.once = (app, method) => {
+  const once = app._handleOnce || (app._handleOnce = {});
+  once[method] = once[method] || new Set();
+
+  return through.obj(async(file, enc, next) => {
+    if (!file || !file.isNull || (!file.path && !file.contents)) {
+      next();
+      return;
+    }
+
+    if (file.isNull()) {
+      next(null, file);
+      return;
+    }
+
+    if (app.handle && !once[method].has(file)) {
+      try {
+        await app.handle(method, file);
+      } catch (err) {
+        next(err);
         return;
       }
+    }
 
-      if (typeof app.handle !== 'function') {
-        next(null, file);
-        return;
-      }
-
-      // file.options is used for tracking middleware
-      // stages during the render cycle
-      if (typeof file.options === 'undefined') {
-        file.options = {};
-      }
-      app[prop](stage, file, next);
-    });
-  };
-}
+    once[method].add(file);
+    next(null, file);
+  });
+};
